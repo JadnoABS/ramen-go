@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(HttpMethod.GET, "/broths").permitAll()
                         .requestMatchers(HttpMethod.GET, "/proteins").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/orders").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/order").permitAll()
                 ).csrf().disable();
         return http.build();
     }
