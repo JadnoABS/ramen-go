@@ -10,15 +10,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleException(Exception exception) {
-        ApiError error = new ApiError("An unexpected error ocurred, please try again later.");
+    public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+        ErrorResponse error = new ErrorResponse("could not place order");
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException exception) {
+        ErrorResponse error = new ErrorResponse(exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException exception) {
-        ApiError error = new ApiError(exception.getMessage());
+    public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException exception) {
+        ErrorResponse error = new ErrorResponse(exception.getMessage());
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }

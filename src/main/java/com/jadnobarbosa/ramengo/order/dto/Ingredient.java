@@ -1,19 +1,21 @@
 package com.jadnobarbosa.ramengo.order.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.math.BigDecimal;
 
 @Getter
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ingredient {
 
-    private Integer id;
+    private String id;
     private String imageInactive;
     private String imageActive;
     private String name;
     private String description;
-    private BigDecimal price;
+    private int price;
 
 }
