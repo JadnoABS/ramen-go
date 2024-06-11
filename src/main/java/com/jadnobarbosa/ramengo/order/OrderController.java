@@ -29,7 +29,7 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.getProteins());
     }
 
-    @PostMapping("/orders")
+    @PostMapping("/order")
     public ResponseEntity<OrderResponse> postOrder(@RequestBody OrderRequest request) {
         return ResponseEntity.ok().body(orderService.postOrder(request));
     }
