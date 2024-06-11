@@ -7,9 +7,7 @@ import com.jadnobarbosa.ramengo.order.dto.Protein;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.getProteins());
     }
 
-    @PostMapping("/order")
+    @RequestMapping(value = {"/order", "/orders"}, method = RequestMethod.POST)
     public ResponseEntity<OrderResponse> postOrder(@RequestBody OrderRequest request) {
         return ResponseEntity.ok().body(orderService.postOrder(request));
     }
